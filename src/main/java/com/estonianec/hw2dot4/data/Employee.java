@@ -1,4 +1,4 @@
-package com.estonianec.hw2dot4;
+package com.estonianec.hw2dot4.data;
 
 import java.util.Objects;
 

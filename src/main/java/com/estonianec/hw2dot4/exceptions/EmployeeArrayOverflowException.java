@@ -1,12 +1,12 @@
-package com.estonianec.hw2dot4;
+package com.estonianec.hw2dot4.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class EmployeeArrayOverflow extends RuntimeException {
+public class EmployeeArrayOverflowException extends RuntimeException {
 
-    public EmployeeArrayOverflow(String s) {
+    public EmployeeArrayOverflowException(String s) {
         super(s);
     }
 }

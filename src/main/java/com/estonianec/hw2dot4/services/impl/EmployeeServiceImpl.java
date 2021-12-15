@@ -1,9 +1,13 @@
-package com.estonianec.hw2dot4;
+package com.estonianec.hw2dot4.services.impl;
 
+import com.estonianec.hw2dot4.data.Employee;
+import com.estonianec.hw2dot4.exceptions.EmployeeArrayOverflowException;
+import com.estonianec.hw2dot4.exceptions.EmployeeNotFoundException;
+import com.estonianec.hw2dot4.services.EmployeeService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private final Employee[] employees;
 
@@ -17,14 +21,14 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee[] addEmployee (String firstName, String lastName) throws EmployeeArrayOverflow {
+    public void addEmployee (String firstName, String lastName){
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
                 employees[i] = new Employee(firstName, lastName);
-                return employees;
+                return;
             }
         }
-        throw new EmployeeArrayOverflow("Массив сотрудников переполнен.");
+        throw new EmployeeArrayOverflowException("Массив сотрудников переполнен.");
     }
 
     private int indexOfEmployee(String firstName, String lastName) {
@@ -35,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService{
                 }
             }
         }
-        throw new EmployeeNotFound();
+        throw new EmployeeNotFoundException();
     }
 
     @Override
@@ -46,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee findEmployee(String firstName, String lastName) throws EmployeeNotFound {
+    public Employee findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
         int index = indexOfEmployee(firstName, lastName);
         return employees[index];
     }

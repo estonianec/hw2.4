@@ -1,5 +1,7 @@
-package com.estonianec.hw2dot4;
+package com.estonianec.hw2dot4.controllers;
 
+import com.estonianec.hw2dot4.data.Employee;
+import com.estonianec.hw2dot4.services.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
