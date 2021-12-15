@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List showAllEmployees() {
+    public List<String> showAllEmployees() {
         return employee;
     }
 
