@@ -1,14 +1,15 @@
 package com.estonianec.hw2dot4.services;
 
-import com.estonianec.hw2dot4.data.Employee;
 import com.estonianec.hw2dot4.exceptions.EmployeeArrayOverflowException;
 import com.estonianec.hw2dot4.exceptions.EmployeeNotFoundException;
 
+import java.util.List;
+
 public interface EmployeeService {
 
-    Employee[] showAllEmployees();
+    List showAllEmployees();
     void addEmployee(String firstName, String lastName) throws EmployeeArrayOverflowException;
-    Employee[] delEmployee(String firstName, String lastName);
-    Employee findEmployee(String firstName, String lastName) throws EmployeeNotFoundException;
+    String delEmployee(String firstName, String lastName);
+    String findEmployee(String firstName, String lastName) throws EmployeeNotFoundException;
 
 }
