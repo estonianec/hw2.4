@@ -1,6 +1,5 @@
 package com.estonianec.hw2dot4.services.impl;
 
-import com.estonianec.hw2dot4.data.Employee;
 import com.estonianec.hw2dot4.exceptions.EmployeeNotFoundException;
 import com.estonianec.hw2dot4.services.EmployeeService;
 import org.springframework.stereotype.Service;
