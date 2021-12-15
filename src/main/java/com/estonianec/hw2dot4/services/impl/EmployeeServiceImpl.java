@@ -10,15 +10,15 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final List<String> employee;
+    private final List<String> employees;
 
     public EmployeeServiceImpl() {
-        employee = new ArrayList<>();
+        employees = new ArrayList<>();
     }
 
     @Override
     public List<String> showAllEmployees() {
-        return employee;
+        return employees;
     }
 
     public String makeFullName(String firstName, String lastName) {
@@ -28,14 +28,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void addEmployee (String firstName, String lastName){
         String fullName = makeFullName(firstName, lastName);
-        employee.add(fullName);
+        employees.add(fullName);
     }
 
     @Override
     public String delEmployee(String firstName, String lastName) {
         String fullName = makeFullName(firstName, lastName);
-        if (employee.contains(fullName)) {
-            employee.remove(fullName);
+        if (employees.contains(fullName)) {
+            employees.remove(fullName);
             return fullName;
         } else throw new EmployeeNotFoundException();
     }
@@ -43,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
         String fullName = makeFullName(firstName, lastName);
-        if (employee.contains(fullName)) {
+        if (employees.contains(fullName)) {
             return fullName;
         } else throw new EmployeeNotFoundException();
     }

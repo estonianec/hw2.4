@@ -1,6 +1,5 @@
 package com.estonianec.hw2dot4.controllers;
 
-import com.estonianec.hw2dot4.data.Employee;
 import com.estonianec.hw2dot4.services.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List showAllEmployees() {
+    public List<String> showAllEmployees() {
         return employeeService.showAllEmployees();
     }
 
