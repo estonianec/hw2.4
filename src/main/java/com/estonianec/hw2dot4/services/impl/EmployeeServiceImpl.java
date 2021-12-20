@@ -4,20 +4,19 @@ import com.estonianec.hw2dot4.exceptions.EmployeeNotFoundException;
 import com.estonianec.hw2dot4.services.EmployeeService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
-    private final List<String> employees;
+    private final Map<String, String> employees;
 
     public EmployeeServiceImpl() {
-        employees = new ArrayList<>();
+        employees = new HashMap<>();
     }
 
     @Override
-    public List<String> showAllEmployees() {
+    public Map<String, String> showAllEmployees() {
         return employees;
     }
 
@@ -28,13 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void addEmployee (String firstName, String lastName){
         String fullName = makeFullName(firstName, lastName);
-        employees.add(fullName);
+        employees.put(fullName, fullName);
     }
 
     @Override
     public String delEmployee(String firstName, String lastName) {
         String fullName = makeFullName(firstName, lastName);
-        if (employees.contains(fullName)) {
+        if (employees.containsKey(fullName)) {
             employees.remove(fullName);
             return fullName;
         } else throw new EmployeeNotFoundException();
@@ -43,9 +42,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
         String fullName = makeFullName(firstName, lastName);
-        if (employees.contains(fullName)) {
+        if (employees.containsKey(fullName)) {
             return fullName;
         } else throw new EmployeeNotFoundException();
     }
+
 }
 
