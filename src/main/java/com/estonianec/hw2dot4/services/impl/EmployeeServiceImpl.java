@@ -26,9 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void addEmployee (String firstName, String lastName){
+    public void addEmployee (String firstName, String lastName, int salary, int departmentId){
         String fullName = makeFullName(firstName, lastName);
-        Employee employee = new Employee(firstName, lastName);
+        Employee employee = new Employee(firstName, lastName, salary, departmentId);
         if (!employees.containsKey(fullName)) {
             employees.put(fullName, employee);
         } else throw new IllegalArgumentException();
