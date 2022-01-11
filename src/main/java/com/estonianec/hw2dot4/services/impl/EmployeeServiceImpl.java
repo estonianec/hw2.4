@@ -2,7 +2,9 @@ package com.estonianec.hw2dot4.services.impl;
 
 import com.estonianec.hw2dot4.data.Employee;
 import com.estonianec.hw2dot4.exceptions.EmployeeNotFoundException;
+import com.estonianec.hw2dot4.exceptions.EmployeeWrongParamsException;
 import com.estonianec.hw2dot4.services.EmployeeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -26,14 +28,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void addEmployee (String firstName, String lastName, int salary, int departmentId){
-        String fullName = makeFullName(firstName, lastName);
-        Employee employee = new Employee(firstName, lastName, salary, departmentId);
-        if (!employees.containsKey(fullName)) {
-            employees.put(fullName, employee);
-        } else throw new IllegalArgumentException();
-
+    public void addEmployee(String firstName, String lastName, int salary, int departmentId) {
+        if (StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)) {
+            firstName = StringUtils.capitalize(firstName);
+            lastName = StringUtils.capitalize(lastName);
+            String fullName = makeFullName(firstName, lastName);
+            Employee employee = new Employee(firstName, lastName, salary, departmentId);
+            if (!employees.containsKey(fullName)) {
+                employees.put(fullName, employee);
+            } else throw new IllegalArgumentException();
+        } else throw new EmployeeWrongParamsException();
     }
+//    http://localhost:8080/employee/add?firstName=asd&lastName=as1f&salary=12&departmentId=1
 
     @Override
     public String delEmployee(String firstName, String lastName) {
