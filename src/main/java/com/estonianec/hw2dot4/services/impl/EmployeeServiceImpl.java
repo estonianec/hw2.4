@@ -29,17 +29,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployee(String firstName, String lastName, int salary, int departmentId) {
-        if (StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)) {
-            firstName = StringUtils.capitalize(firstName);
-            lastName = StringUtils.capitalize(lastName);
-            String fullName = makeFullName(firstName, lastName);
-            Employee employee = new Employee(firstName, lastName, salary, departmentId);
-            if (!employees.containsKey(fullName)) {
-                employees.put(fullName, employee);
-            } else throw new IllegalArgumentException();
-        } else throw new EmployeeWrongParamsException();
+//        if (StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)) {
+//            firstName = StringUtils.capitalize(firstName);
+//            lastName = StringUtils.capitalize(lastName);
+//            String fullName = makeFullName(firstName, lastName);
+//            Employee employee = new Employee(firstName, lastName, salary, departmentId);
+//            if (!employees.containsKey(fullName)) {
+//                employees.put(fullName, employee);
+//            } else throw new IllegalArgumentException();
+//        } else throw new EmployeeWrongParamsException();
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
+            throw new EmployeeWrongParamsException();
+        }
+
+        firstName = StringUtils.capitalize(firstName);
+        lastName = StringUtils.capitalize(lastName);
+        String fullName = makeFullName(firstName, lastName);
+
+        Employee employee = new Employee(firstName, lastName, salary, departmentId);
+
+        if (employees.containsKey(fullName)) {
+            throw new IllegalArgumentException();
+        }
+
+        employees.put(fullName, employee);
     }
-//    http://localhost:8080/employee/add?firstName=asd&lastName=as1f&salary=12&departmentId=1
 
     @Override
     public String delEmployee(String firstName, String lastName) {
