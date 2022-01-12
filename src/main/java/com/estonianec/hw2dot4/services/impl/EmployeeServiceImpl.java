@@ -29,15 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployee(String firstName, String lastName, int salary, int departmentId) {
-//        if (StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)) {
-//            firstName = StringUtils.capitalize(firstName);
-//            lastName = StringUtils.capitalize(lastName);
-//            String fullName = makeFullName(firstName, lastName);
-//            Employee employee = new Employee(firstName, lastName, salary, departmentId);
-//            if (!employees.containsKey(fullName)) {
-//                employees.put(fullName, employee);
-//            } else throw new IllegalArgumentException();
-//        } else throw new EmployeeWrongParamsException();
+
         if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
             throw new EmployeeWrongParamsException();
         }
