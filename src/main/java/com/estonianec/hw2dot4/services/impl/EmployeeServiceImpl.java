@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void addEmployee(String firstName, String lastName, int salary, int departmentId) {
 
-        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName) || departmentId < 0 || salary < 0) {
             throw new EmployeeWrongParamsException();
         }
 
